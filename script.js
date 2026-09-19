@@ -66,7 +66,7 @@ function focusSearch(){document.getElementById("searchInput").focus();document.g
 function checkoutWhatsApp(){
   if(!cart.length){alert("Cart is empty.");return}
   // CHANGE THIS NUMBER to your WhatsApp number with country code, e.g. 919876543210
-  const whatsappNumber="919000000000";
+  const whatsappNumber="919971566545";
   const lines=cart.map(x=>{const p=products.find(y=>y.id===x.id);return `${p.name} x${x.qty} - ${money(p.price*x.qty)}`}).join("%0A");
   const total=cart.reduce((a,x)=>a+products.find(y=>y.id===x.id).price*x.qty,0);
   const msg=`Hello ONLY ZX WEAR,%0A%0AI want to place an order:%0A${lines}%0A%0ATotal: ${money(total)}%0A%0AName:%0AAddress:%0APincode:%0APhone:`;
