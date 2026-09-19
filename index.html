@@ -102,7 +102,26 @@
     </section>
   </main>
 
-<footer class="footer">
+  <!-- ऑर्डर फॉर्म सेक्शन (फ़ूटर के ठीक ऊपर) -->
+  <section id="order-form" style="max-width: 650px; margin: 40px auto; padding: 20px 10px; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); text-align: center;">
+    <h2 style="font-size: 24px; color: #111; margin-bottom: 10px;">अपना ऑर्डर यहाँ बुक करें</h2>
+    <p style="color: #666; font-size: 14px; margin-bottom: 20px;">नीचे अपनी डिटेल्स भरें, आपका ऑर्डर कैश ऑन डिलीवरी (COD) पर बुक हो जाएगा।</p>
+    
+    <div style="width: 100%; overflow: hidden; border-radius: 8px;">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd29pdKRsy_8_W7BgSzJWs5fi_mbun711VOU3UsOcYhP6ylOw/viewform?embedded=true" 
+              width="100%" 
+              height="900" 
+              frameborder="0" 
+              marginheight="0" 
+              marginwidth="0" 
+              style="border: none; max-width: 100%;">
+        Loading…
+      </iframe>
+    </div>
+  </section>
+
+  <!-- आपका फ़ूटर (ईमेल आईडी के साथ) -->
+  <footer class="footer">
     <div>
       <div class="footer-logo">ONLY <span>ZX</span> WEAR</div>
       <p>Wear Your Identity.</p>
@@ -113,24 +132,26 @@
       <a href="#" onclick="openPolicy('returns');return false;">Returns</a>
     </div>
     <div>
-      <!-- ईमेल आईडी और क्लिकेबल लिंक -->
       <p style="margin-bottom: 6px;">✉️ <a href="mailto:onlyzxwear@gmail.com" style="color: inherit; text-decoration: none; font-weight: bold;">onlyzxwear@gmail.com</a></p>
       <p>Instagram: <strong>@onlyzxwear</strong></p>
       <p>© <span id="year"></span> ONLY ZX WEAR</p>
     </div>
   </footer>
+  
 
 
-  <div class="overlay" id="overlay" onclick="closeCart()"></div>
+ <div class="overlay" id="overlay" onclick="closeCart()"></div>
   <aside class="cart" id="cart">
     <div class="cart-head"><h2>Your Cart</h2><button onclick="closeCart()">×</button></div>
     <div id="cartItems"></div>
     <div class="cart-bottom">
       <div><span>Subtotal</span><strong id="cartTotal">₹0</strong></div>
-      <button class="btn dark full" onclick="checkoutWhatsApp()">ORDER ON WHATSAPP</button>
-      <small>For now this uses WhatsApp/COD. Add a payment gateway later when you're ready.</small>
+      <!-- WhatsApp बटन की जगह डायरेक्ट फॉर्म वाला बटन -->
+      <a href="#order-form" class="btn dark full" onclick="closeCart()" style="display: block; text-align: center; text-decoration: none; line-height: 2.5;">PROCEED TO ORDER (COD)</a>
+      <small>Fill details in the form below for Cash on Delivery (COD).</small>
     </div>
   </aside>
+
 
   <div class="modal" id="policyModal">
     <div class="modal-box">
