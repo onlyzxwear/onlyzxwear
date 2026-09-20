@@ -60,17 +60,79 @@ function renderCart(){
   }).join("");
   document.getElementById("cartTotal").textContent=money(total);
 }
-function openCart(){renderCart();document.getElementById("cart").classList.add("open");document.getElementById("overlay").classList.add("show")}
-function closeCart(){document.getElementById("cart").classList.remove("open");document.getElementById("overlay").classList.remove("show")}
-function focusSearch(){document.getElementById("searchInput").focus();document.getElementById("new").scrollIntoView()}
-function checkoutWhatsApp(){
-  if(!cart.length){alert("Cart is empty.");return}
-  // CHANGE THIS NUMBER to your WhatsApp number with country code, e.g. 919876543210
-  const whatsappNumber="919971566545";
-  const lines=cart.map(x=>{const p=products.find(y=>y.id===x.id);return `${p.name} x${x.qty} - ${money(p.price*x.qty)}`}).join("%0A");
-  const total=cart.reduce((a,x)=>a+products.find(y=>y.id===x.id).price*x.qty,0);
-  const msg=`Hello ONLY ZX WEAR,%0A%0AI want to place an order:%0A${lines}%0A%0ATotal: ${money(total)}%0A%0AName:%0AAddress:%0APincode:%0APhone:`;
-  window.open(`https://wa.me/${whatsappNumber}?text=${msg}`,"_blank");
+async function checkoutWhatsApp(){
+  if(!cart.length){
+    alert("Cart is empty.");
+    return;
+  }
+
+  const total = cart.reduce(
+    (a,x) => a + products.find(y => y.id === x.id).price * x.qty,
+    0
+  );
+
+  const name = prompt("Enter your name:");
+  if(!name) return;
+
+  const phone = prompt("Enter your phone number:");
+  if(!phone) return;
+
+  const address = prompt("Enter your full delivery address:");
+  if(!address) return;
+
+  const pincode = prompt("Enter your pincode:");
+  if(!pincode) return;
+
+  try {
+    const response = await fetch(
+      "https://muvfmubxdbkcoqcukbos.supabase.co/functions/v1/hyper-endpoint",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          amount: total,
+          currency: "INR"
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    if(!response.ok || !data.orderId){
+      throw new Error(data.error || "Unable to create Razorpay order");
+    }
+
+    const options = {
+      key: data.keyId,
+      amount: data.amount,
+      currency: data.currency,
+      name: "ONLY ZX WEAR",
+      description: "Streetwear Order",
+      order_id: data.orderId,
+
+      prefill: {
+        name: name,
+        contact: phone
+      },
+
+      handler: function(payment){
+        alert("Payment successful! Payment ID: " + payment.razorpay_payment_id);
+      },
+
+      theme: {
+        color: "#000000"
+      }
+    };
+
+    const rzp = new Razorpay(options);
+    rzp.open();
+
+  } catch(error) {
+    console.error(error);
+    alert("Payment could not be started. Please try again.");
+  }
 }
 function openPolicy(type){
   const content=type==="shipping"
