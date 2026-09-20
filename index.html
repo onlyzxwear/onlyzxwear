@@ -215,38 +215,31 @@
 
   <script src="script.js"></script>
   <script>
-    // मेन्यू टॉगल
-    document.addEventListener('DOMContentLoaded', function() {
-      const menuBtn = document.getElementById('mobileMenuBtn');
-      const mainNav = document.getElementById('mainNav');
-      if (menuBtn && mainNav) {
-        menuBtn.onclick = function(e) {
-          e.preventDefault();
-          mainNav.classList.toggle('open');
-        };
-      }
-    });
+  // 1. मेन्यू टॉगल (जो आपका सही काम कर रहा है)
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const mainNav = document.getElementById('mainNav');
+    if (menuBtn && mainNav) {
+      menuBtn.onclick = function(e) {
+        e.preventDefault();
+        mainNav.classList.toggle('open');
+      };
+    }
+  });
 
-    // PWA Service Worker रजिस्ट्रेशन
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('sw.js');
+  // 2. PWA सर्विस वर्कर (सिर्फ एक बार, पूरे सही पाथ के साथ)
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('https://onlyzxwear.github.io/onlyzxwear/sw.js', {
+        scope: 'https://onlyzxwear.github.io/onlyzxwear/'
+      }).catch(function(err) {
+        console.log('SW Error:', err);
       });
-    }
-  </script>
-    <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('./sw.js', { scope: './' })
-          .then(function(reg) {
-            console.log('PWA Registered successfully:', reg.scope);
-          })
-          .catch(function(err) {
-            console.log('PWA Registration failed:', err);
-          });
-      });
-    }
-    </script>
+    });
+  }
+</script>
+
+
   
 </body>
 </html>
