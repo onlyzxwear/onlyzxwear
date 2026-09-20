@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#111111">
-<meta name="mobile-web-app-capable" content="yes">
-  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ONLY ZX WEAR — Wear Your Identity</title>
   <meta name="description" content="ONLY ZX WEAR — premium everyday streetwear. Wear Your Identity.">
+  
+  <!-- PWA Settings -->
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#111111">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="./icon.png">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -19,8 +24,8 @@
 
   <header class="header">
     <a class="logo" href="#home">ONLY <span>ZX</span> WEAR</a>
-    <button class="menu-btn" aria-label="Open menu">☰</button>
-    <nav class="nav">
+    <button class="menu-btn" id="mobileMenuBtn" aria-label="Open menu">☰</button>
+    <nav class="nav" id="mainNav">
       <a href="#men">MEN</a>
       <a href="#women">WOMEN</a>
       <a href="#new">NEW ARRIVALS</a>
@@ -76,21 +81,19 @@
         <a class="category-card" href="#products" onclick="filterProducts('Women Shirts')"><div class="cat-img women-shirt"></div><b>SHIRTS</b></a>
         <a class="category-card" href="#products" onclick="filterProducts('Women Jeans')"><div class="cat-img women-jeans"></div><b>JEANS</b></a>
       </div>
-      <div class="product-card">
-  <!-- आपकी टी-शर्ट की फोटो और टाइटल -->
-  <div class="product-details">
-    <div class="product-title">Classic Oversized T-Shirt</div>
-    <div class="price">₹699</div>
 
-    <!-- Razorpay Button -->
-    <div style="margin-top: 10px;">
-      <form>
-        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_TeEObh8A48sXbN" async> </script>
-      </form>
-    </div>
-  </div>
+      <!-- Featured Product Card with Razorpay -->
+      <div class="product-card" style="max-width: 320px; margin: 30px auto; border: 1px solid #333; padding: 15px; border-radius: 12px; background: #1a1a1a; text-align: center;">
+        <div class="product-details">
+          <div class="product-title" style="font-weight: 700; font-size: 18px; color: #fff;">Classic Oversized T-Shirt</div>
+          <div class="price" style="font-size: 18px; color: #f39c12; margin: 8px 0;">₹699</div>
+          <div style="margin-top: 12px;">
+            <form>
+              <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_TeEObh8A48sXbN" async> </script>
+            </form>
+          </div>
+        </div>
       </div>
-      
     </section>
 
     <section class="section" id="new">
@@ -122,43 +125,35 @@
   </main>
 
   <!-- Footer / Contact Section -->
-<footer id="contact" style="background: #111; color: #fff; padding: 40px 20px; text-align: center;">
-  <h3 style="margin-bottom: 15px; font-size: 22px; letter-spacing: 1px;">ONLY ZX WEAR</h3>
-  <p style="color: #aaa; margin-bottom: 20px;">Wear Your Identity</p>
-  
-  <!-- ईमेल लिंक (क्लिक करते ही सीधे मेल ऐप खुलेगी) -->
-  <p style="margin: 10px 0; font-size: 15px;">
-    ✉️ <strong>Email:</strong> 
-    <a href="mailto:onlyzxwear@gmail.com" style="color: #f39c12; text-decoration: none; font-weight: 600;">
-      onlyzxwear@gmail.com
-    </a>
-  </p>
+  <footer id="contact" style="background: #111; color: #fff; padding: 40px 20px; text-align: center;">
+    <h3 style="margin-bottom: 15px; font-size: 22px; letter-spacing: 1px;">ONLY ZX WEAR</h3>
+    <p style="color: #aaa; margin-bottom: 20px;">Wear Your Identity</p>
+    
+    <p style="margin: 10px 0; font-size: 15px;">
+      ✉️ <strong>Email:</strong> 
+      <a href="mailto:onlyzxwear@gmail.com" style="color: #f39c12; text-decoration: none; font-weight: 600;">
+        onlyzxwear@gmail.com
+      </a>
+    </p>
 
-  <!-- इंस्टाग्राम हैंडल (क्लिक करते ही सीधे प्रोफ़ाइल खुलेगी) -->
-  <p style="margin: 10px 0; font-size: 15px;">
-    📸 <strong>Instagram:</strong> 
-    <a href="https://instagram.com/onlyzxwear" target="_blank" style="color: #f39c12; text-decoration: none; font-weight: 600;">
-      @onlyzxwear
-    </a>
-  </p>
+    <p style="margin: 10px 0; font-size: 15px;">
+      📸 <strong>Instagram:</strong> 
+      <a href="https://instagram.com/onlyzxwear" target="_blank" style="color: #f39c12; text-decoration: none; font-weight: 600;">
+        @onlyzxwear
+      </a>
+    </p>
 
-  <!-- सीधे मेल भेजने का बटन -->
-  <div style="margin-top: 25px;">
-    <a href="mailto:onlyzxwear@gmail.com?subject=Inquiry%20from%20Website" 
-       style="background: #f39c12; color: #fff; padding: 10px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; display: inline-block; font-size: 14px; letter-spacing: 0.5px;">
-      Mail Us Directly
-    </a>
-  </div>
+    <div style="margin-top: 25px;">
+      <a href="mailto:onlyzxwear@gmail.com?subject=Inquiry%20from%20Website" 
+         style="background: #f39c12; color: #fff; padding: 10px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; display: inline-block; font-size: 14px; letter-spacing: 0.5px;">
+        Mail Us Directly
+      </a>
+    </div>
 
-  <p style="color: #666; font-size: 12px; margin-top: 30px;">© ONLY ZX WEAR. All Rights Reserved.</p>
-</footer>
-  
-
-  <p style="font-size: 13px; color: #666; margin-top: 30px;">
-    © 2026 ONLY ZX WEAR. All Rights Reserved.
-  </p>
-</footer>
-
+    <p style="font-size: 13px; color: #666; margin-top: 30px;">
+      © 2026 ONLY ZX WEAR. All Rights Reserved.
+    </p>
+  </footer>
 
   <div class="overlay" id="overlay" onclick="closeCart()"></div>
   <aside class="cart" id="cart">
@@ -179,11 +174,26 @@
   </div>
 
   <script src="script.js"></script>
-<script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js");
-  }
-</script>
+  <script>
+    // मेन्यू बटन टॉगल फिक्स
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const mainNav = document.getElementById('mainNav');
+    if (menuBtn && mainNav) {
+      menuBtn.addEventListener('click', () => {
+        mainNav.classList.toggle('open');
+        mainNav.style.display = (mainNav.style.display === 'flex') ? 'none' : 'flex';
+        mainNav.style.flexDirection = 'column';
+      });
+    }
 
+    // PWA Service Worker रजिस्ट्रेशन
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('Service Worker Registered'))
+          .catch(err => console.log('SW Registration failed: ', err));
+      });
+    }
+  </script>
 </body>
 </html>
