@@ -1,23 +1,24 @@
 {
+  "id": "https://onlyzxwear.github.io/onlyzxwear/",
   "name": "ONLY ZX WEAR",
   "short_name": "ONLY ZX",
-  "start_url": "/onlyzxwear/",
-  "scope": "/onlyzxwear/",
+  "start_url": "https://onlyzxwear.github.io/onlyzxwear/",
+  "scope": "https://onlyzxwear.github.io/onlyzxwear/",
   "display": "standalone",
   "background_color": "#111111",
   "theme_color": "#111111",
   "icons": [
     {
-      "src": "/onlyzxwear/icon.png",
+      "src": "https://onlyzxwear.github.io/onlyzxwear/icon.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "/onlyzxwear/icon.png",
+      "src": "https://onlyzxwear.github.io/onlyzxwear/icon.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 }
