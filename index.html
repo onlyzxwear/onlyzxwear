@@ -99,6 +99,18 @@
     <section class="section soft" id="women">
       <div class="section-head">
         <div>
+                <!-- Women T-Shirt Card (₹699) -->
+      <div style="max-width: 320px; margin: 25px auto; background: #161616; border: 1px solid #2a2a2a; border-radius: 12px; padding: 18px; text-align: center;">
+        <div class="cat-img women-tshirt" style="height: 200px; border-radius: 8px; margin-bottom: 12px; background-size: cover; background-position: center;"></div>
+        <h3 style="font-size: 18px; color: #fff; margin-bottom: 6px;">Classic Oversized T-Shirt</h3>
+        <div style="font-size: 20px; font-weight: 700; color: #f39c12; margin-bottom: 12px;">₹699</div>
+        <div>
+          <form>
+            <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_TeEObh8A48sXbN" async> </script>
+          </form>
+        </div>
+      </div>
+          
           <p class="eyebrow">COLLECTION</p>
           <h2>WOMEN'S STREETWEAR</h2>
         </div>
@@ -222,5 +234,19 @@
       });
     }
   </script>
+    <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('./sw.js', { scope: './' })
+          .then(function(reg) {
+            console.log('PWA Registered successfully:', reg.scope);
+          })
+          .catch(function(err) {
+            console.log('PWA Registration failed:', err);
+          });
+      });
+    }
+    </script>
+  
 </body>
 </html>
