@@ -7,24 +7,52 @@
   <meta name="description" content="ONLY ZX WEAR — premium everyday streetwear. Wear Your Identity.">
   
   <!-- PWA Settings -->
-  <link rel="manifest" href="./manifest.json">
+  <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#111111">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="apple-touch-icon" href="./icon.png">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="icon.png">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* मोबाइल मेन्यू और हेडर को बिल्कुल ठीक करने के लिए */
+    @media (max-width: 768px) {
+      .nav {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #111;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        z-index: 999;
+      }
+      .nav.open {
+        display: flex !important;
+      }
+      .nav a {
+        padding: 12px 0;
+        border-bottom: 1px solid #222;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="announcement">FREE SHIPPING ON ORDERS ABOVE ₹1499</div>
 
   <header class="header">
     <a class="logo" href="#home">ONLY <span>ZX</span> WEAR</a>
-    <button class="menu-btn" id="mobileMenuBtn" aria-label="Open menu">☰</button>
+    <button class="menu-btn" id="mobileMenuBtn" aria-label="Open menu" style="cursor: pointer; font-size: 22px; background: none; border: none; color: inherit;">☰</button>
     <nav class="nav" id="mainNav">
       <a href="#men">MEN</a>
       <a href="#women">WOMEN</a>
@@ -175,23 +203,22 @@
 
   <script src="script.js"></script>
   <script>
-    // मेन्यू बटन टॉगल फिक्स
-    const menuBtn = document.getElementById('mobileMenuBtn');
-    const mainNav = document.getElementById('mainNav');
-    if (menuBtn && mainNav) {
-      menuBtn.addEventListener('click', () => {
-        mainNav.classList.toggle('open');
-        mainNav.style.display = (mainNav.style.display === 'flex') ? 'none' : 'flex';
-        mainNav.style.flexDirection = 'column';
-      });
-    }
+    // मेन्यू टॉगल
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuBtn = document.getElementById('mobileMenuBtn');
+      const mainNav = document.getElementById('mainNav');
+      if (menuBtn && mainNav) {
+        menuBtn.onclick = function(e) {
+          e.preventDefault();
+          mainNav.classList.toggle('open');
+        };
+      }
+    });
 
     // PWA Service Worker रजिस्ट्रेशन
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
-          .then(reg => console.log('Service Worker Registered'))
-          .catch(err => console.log('SW Registration failed: ', err));
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('sw.js');
       });
     }
   </script>
