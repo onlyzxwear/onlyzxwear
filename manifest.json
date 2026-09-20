@@ -1,20 +1,23 @@
 {
   "name": "ONLY ZX WEAR",
   "short_name": "ONLY ZX",
-  "start_url": "./index.html",
+  "start_url": "/onlyzxwear/",
+  "scope": "/onlyzxwear/",
   "display": "standalone",
   "background_color": "#111111",
   "theme_color": "#111111",
   "icons": [
     {
-      "src": "icon.png",
+      "src": "/onlyzxwear/icon.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "icon.png",
+      "src": "/onlyzxwear/icon.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
